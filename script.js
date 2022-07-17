@@ -27,3 +27,17 @@ function updateDisplay() {
 };
 
 updateDisplay();
+
+const keys = document.querySelectorAll('button');
+keys.forEach((key) => {
+    key.addEventListener('click', () => {
+        if (key.classList.value === 'operand') console.log(key.value);
+        if (key.classList.value === 'operator') console.log(key.value);
+        if (key.classList.value === 'decimal') console.log(key.value);
+        if (key.classList.value === 'eval-operator') console.log(key.value);
+        if (key.classList.value === 'all-clear') console.log(key.value);
+        if (key.classList.value === 'delete') console.log(key.value);
+        if (key.classList.value === 'percent') console.log(key.value);
+        if (key.classList.value === 'sign') console.log(key.value);
+    });
+});
