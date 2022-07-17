@@ -99,3 +99,25 @@ body {
 .calculator-keys > button:hover {
     background-color: rgba(255, 255, 255, .90);
 }
+
+.calculator-keys > button:hover {
+    background-color: rgba(255, 255, 255, .90);
+}
+
+.calculator-keys > .operator,
+.calculator-keys > .eval-operator {
+    background-color: rgba(202, 202, 202, .75);
+}
+
+.calculator-keys > .operator:hover
+.calculator-keys > .eval-operator:hover {
+    background-color: rgba(202, 202, 202, .90);
+}
+
+.calculator-keys > .operator:focus {
+    background-color: rgb(255, 123, 0);
+}
+
+.calculator-keys > .eval-operator:focus {
+    background-color: rgb(0, 170, 255);
+}
