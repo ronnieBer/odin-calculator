@@ -19,3 +19,11 @@ function operate(operator, firstOperand, secondOperand) {
     if (operator === '/') return divide(firstOperand, secondOperand);
 };
 // console.log(operate('/', 24, 12));
+
+function updateDisplay() {
+    const display = document.querySelector('.current-display');
+
+    display.innerText = calculator.displayValue;
+};
+
+updateDisplay();
