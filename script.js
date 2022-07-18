@@ -6,6 +6,16 @@ const calculator = {
     waitingForSecondOperand: false,
 };
 
+function inputNumber(number) {
+    const { displayValue } = calculator;
+
+    if (displayValue === '0') {
+        calculator.displayValue = number
+    } else {
+        calculator.displayValue = displayValue + number
+    };
+};
+
 const add = (num1, num2) => num1 + num2;
 const subtract = (num1, num2) => num1 - num2;
 const multiply = (num1, num2) => num1 * num2;
@@ -31,7 +41,7 @@ updateDisplay();
 const keys = document.querySelectorAll('button');
 keys.forEach((key) => {
     key.addEventListener('click', () => {
-        if (key.classList.value === 'operand') console.log(key.value);
+        if (key.classList.value === 'operand') inputNumber(key.value); // console.log(key.value);
         if (key.classList.value === 'operator') console.log(key.value);
         if (key.classList.value === 'decimal') console.log(key.value);
         if (key.classList.value === 'eval-operator') console.log(key.value);
@@ -39,5 +49,6 @@ keys.forEach((key) => {
         if (key.classList.value === 'delete') console.log(key.value);
         if (key.classList.value === 'percent') console.log(key.value);
         if (key.classList.value === 'sign') console.log(key.value);
+        updateDisplay();
     });
 });
