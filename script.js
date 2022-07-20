@@ -23,6 +23,7 @@ function inputNumber(number) {
 };
 
 function inputDecimal(point) {
+    // Bug to fix (decimal point not working on second operand)
     if (!calculator.displayValue.includes(point)) {
         calculator.displayValue += point;
     };
@@ -96,7 +97,7 @@ function clearAll() {
     calculator.operator = '';
     calculator.waitingForSecondOperand = false;
     previousDisplay.innerText = '';
-}
+};
 
 function updateDisplay() {
     const display = document.querySelector('.current-display');
@@ -113,7 +114,7 @@ keys.forEach((key) => {
         if (key.classList.value === 'operator') handleOperator(key.value); // console.log(key.value);
         if (key.classList.value === 'decimal') inputDecimal(key.value); // console.log(key.value);
         if (key.classList.value === 'eval-operator') evalOperator(); // console.log(key.value);
-        if (key.classList.value === 'all-clear') console.log(key.value);
+        if (key.classList.value === 'all-clear') clearAll() // console.log(key.value);
         if (key.classList.value === 'delete') console.log(key.value);
         if (key.classList.value === 'percent') console.log(key.value);
         if (key.classList.value === 'sign') console.log(key.value);
