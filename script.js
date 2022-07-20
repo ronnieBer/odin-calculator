@@ -89,6 +89,15 @@ function operate(operator, firstOperand, secondOperand) {
 };
 // console.log(operate('/', 24, 12));
 
+function clearAll() {
+    calculator.displayValue = '0';
+    calculator.firstOperand = '';
+    calculator.secondOperand = '';
+    calculator.operator = '';
+    calculator.waitingForSecondOperand = false;
+    previousDisplay.innerText = '';
+}
+
 function updateDisplay() {
     const display = document.querySelector('.current-display');
 
