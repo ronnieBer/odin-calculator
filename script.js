@@ -53,8 +53,8 @@ function handleOperator(newOperator) {
     } else if (operator) {
         const result = operate(operator, previousValue, currentValue);
 
-        calculator.displayValue = `${parseFloat(result)}`;
-        calculator.firstOperand = `${parseFloat(result)}`;
+        calculator.displayValue = `${parseFloat(result.toFixed(7))}`;
+        calculator.firstOperand = `${parseFloat(result.toFixed(7))}`;
     };
 
     calculator.waitingForSecondOperand = true;
@@ -80,7 +80,7 @@ function evalOperator() {
 
     if (operator === null || waitingForSecondOperand) return;
 
-    calculator.displayValue = `${parseFloat(result)}`;
+    calculator.displayValue = `${parseFloat(result.toFixed(7))}`;
     previousDisplay.innerText = `${calculator.firstOperand} ${calculator.operator} ${calculator.secondOperand} =`;
     calculator.waitingForSecondOperand = false;
     clearEvalOperator();
