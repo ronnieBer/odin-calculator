@@ -6,6 +6,8 @@ const calculator = {
     waitingForSecondOperand: false,
 };
 
+const previousDisplay = document.querySelector('.previous-display');
+
 function inputNumber(number) {
     const { displayValue, waitingForSecondOperand } = calculator;
 
@@ -52,6 +54,7 @@ function handleOperator(newOperator) {
     calculator.waitingForSecondOperand = true;
     calculator.secondOperand = '';
     calculator.operator = newOperator;
+    previousDisplay.innerText = `${calculator.firstOperand} ${calculator.operator}`;
 
     console.log(calculator);
 };
@@ -65,6 +68,7 @@ function evalOperator() {
     if (operator === null || waitingForSecondOperand) return;
 
     calculator.displayValue = `${parseFloat(result)}`;
+    previousDisplay.innerText = `${calculator.firstOperand} ${calculator.operator} ${calculator.secondOperand} =`;
     calculator.waitingForSecondOperand = false;
 
     console.log(calculator);
