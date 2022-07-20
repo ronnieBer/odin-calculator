@@ -7,13 +7,19 @@ const calculator = {
 };
 
 function inputNumber(number) {
-    const { displayValue } = calculator;
+    const { displayValue, waitingForSecondOperand } = calculator;
 
-    if (displayValue === '0') {
-        calculator.displayValue = number
+    if (waitingForSecondOperand === true) {
+        calculator.displayValue = number;
+        calculator.waitingForSecondOperand = false;
     } else {
-        calculator.displayValue = displayValue + number
+        if (displayValue === '0') {
+            calculator.displayValue = number;
+        } else {
+            calculator.displayValue = displayValue + number;
+        };
     };
+    console.log(calculator);
 };
 
 function inputDecimal(point) {
