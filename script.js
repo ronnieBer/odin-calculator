@@ -11,9 +11,11 @@ function inputNumber(number) {
 
     if (waitingForSecondOperand === true) {
         calculator.displayValue = number;
+        calculator.secondOperand = parseFloat(calculator.displayValue);
         calculator.waitingForSecondOperand = false;
     } else {
         calculator.displayValue = displayValue === '0' ? number : displayValue + number;
+        calculator.secondOperand = parseFloat(calculator.displayValue);
     };
     console.log(calculator);
 };
@@ -25,15 +27,31 @@ function inputDecimal(point) {
 };
 
 function handleOperator(newOperator) {
-    const { firstOperand, displayValue, operator } = calculator;
+    const { firstOperand, secondOperand, displayValue, operator, waitingForSecondOperand } = calculator;
     const inputValue = parseFloat(displayValue);
+    const previousValue = parseFloat(firstOperand);
+    const currentValue = parseFloat(secondOperand);
 
-    if (firstOperand === null && !isNaN(inputValue)) {
+    if (displayValue === '0') return;
+
+    if (operator && waitingForSecondOperand) {
+        calculator.operator = newOperator;
+    };
+
+    if (firstOperand === '' && !isNaN(inputValue)) {
         calculator.firstOperand = inputValue;
+    } else if (secondOperand === '' && !isNaN(inputValue)) {
+        calculator.secondOperand = inputValue;
+    } else if (operator) {
+        const result = operate(operator, previousValue, currentValue);
+
+        calculator.displayValue = `${parseFloat(result)}`;
+        calculator.firstOperand = `${parseFloat(result)}`;
     };
 
     calculator.waitingForSecondOperand = true;
-    calculator.operator = newOperator
+    calculator.secondOperand = '';
+    calculator.operator = newOperator;
 
     console.log(calculator);
 };
@@ -47,8 +65,8 @@ const divide = (num1, num2) => num1 / num2;
 function operate(operator, firstOperand, secondOperand) {
     if (operator === '+') return add(firstOperand, secondOperand);
     if (operator === '-') return subtract(firstOperand, secondOperand);
-    if (operator === '*') return multiply(firstOperand, secondOperand);
-    if (operator === '/') return divide(firstOperand, secondOperand);
+    if (operator === '×') return multiply(firstOperand, secondOperand);
+    if (operator === '÷') return divide(firstOperand, secondOperand);
 };
 // console.log(operate('/', 24, 12));
 
