@@ -65,6 +65,13 @@ function handleOperator(newOperator) {
     console.log(calculator);
 };
 
+function clearEvalOperator() {
+    calculator.firstOperand = ''
+    calculator.secondOperand = ''
+    calculator.operator = null;
+    calculator.waitingForSecondOperand = true;
+};
+
 function evalOperator() {
     const { firstOperand, secondOperand, operator, waitingForSecondOperand } = calculator;
     const previousValue = parseFloat(firstOperand);
@@ -76,7 +83,7 @@ function evalOperator() {
     calculator.displayValue = `${parseFloat(result)}`;
     previousDisplay.innerText = `${calculator.firstOperand} ${calculator.operator} ${calculator.secondOperand} =`;
     calculator.waitingForSecondOperand = false;
-    //Bug to fix (after evaluation the input number append to the previous number);
+    clearEvalOperator();
 
     console.log(calculator);
 };
