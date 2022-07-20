@@ -13,11 +13,7 @@ function inputNumber(number) {
         calculator.displayValue = number;
         calculator.waitingForSecondOperand = false;
     } else {
-        if (displayValue === '0') {
-            calculator.displayValue = number;
-        } else {
-            calculator.displayValue = displayValue + number;
-        };
+        calculator.displayValue = displayValue === '0' ? number : displayValue + number;
     };
     console.log(calculator);
 };
