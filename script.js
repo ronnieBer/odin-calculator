@@ -70,6 +70,7 @@ function evalOperator() {
     calculator.displayValue = `${parseFloat(result)}`;
     previousDisplay.innerText = `${calculator.firstOperand} ${calculator.operator} ${calculator.secondOperand} =`;
     calculator.waitingForSecondOperand = false;
+    //Bug to fix (after evaluation the input number append to the previous number);
 
     console.log(calculator);
 };
