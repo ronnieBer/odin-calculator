@@ -22,6 +22,20 @@ function inputDecimal(point) {
     };
 };
 
+function handleOperator(newOperator) {
+    const { firstOperand, displayValue, operator } = calculator;
+    const inputValue = parseFloat(displayValue);
+
+    if (firstOperand === null && !isNaN(inputValue)) {
+        calculator.firstOperand = inputValue;
+    };
+
+    calculator.waitingForSecondOperand = true;
+    calculator.operator = newOperator
+
+    console.log(calculator);
+};
+
 const add = (num1, num2) => num1 + num2;
 const subtract = (num1, num2) => num1 - num2;
 const multiply = (num1, num2) => num1 * num2;
@@ -48,7 +62,7 @@ const keys = document.querySelectorAll('button');
 keys.forEach((key) => {
     key.addEventListener('click', () => {
         if (key.classList.value === 'operand') inputNumber(key.value); // console.log(key.value);
-        if (key.classList.value === 'operator') console.log(key.value);
+        if (key.classList.value === 'operator') handleOperator(key.value) // console.log(key.value);
         if (key.classList.value === 'decimal') inputDecimal(key.value) // console.log(key.value);
         if (key.classList.value === 'eval-operator') console.log(key.value);
         if (key.classList.value === 'all-clear') console.log(key.value);
