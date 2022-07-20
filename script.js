@@ -56,6 +56,20 @@ function handleOperator(newOperator) {
     console.log(calculator);
 };
 
+function evalOperator() {
+    const { firstOperand, secondOperand, operator, waitingForSecondOperand } = calculator;
+    const previousValue = parseFloat(firstOperand);
+    const currentValue = parseFloat(secondOperand);
+    const result = operate(operator, previousValue, currentValue);
+
+    if (operator === null || waitingForSecondOperand) return;
+
+    calculator.displayValue = `${parseFloat(result)}`;
+    calculator.waitingForSecondOperand = false;
+
+    console.log(calculator);
+};
+
 const add = (num1, num2) => num1 + num2;
 const subtract = (num1, num2) => num1 - num2;
 const multiply = (num1, num2) => num1 * num2;
@@ -82,9 +96,9 @@ const keys = document.querySelectorAll('button');
 keys.forEach((key) => {
     key.addEventListener('click', () => {
         if (key.classList.value === 'operand') inputNumber(key.value); // console.log(key.value);
-        if (key.classList.value === 'operator') handleOperator(key.value) // console.log(key.value);
-        if (key.classList.value === 'decimal') inputDecimal(key.value) // console.log(key.value);
-        if (key.classList.value === 'eval-operator') console.log(key.value);
+        if (key.classList.value === 'operator') handleOperator(key.value); // console.log(key.value);
+        if (key.classList.value === 'decimal') inputDecimal(key.value); // console.log(key.value);
+        if (key.classList.value === 'eval-operator') evalOperator(); // console.log(key.value);
         if (key.classList.value === 'all-clear') console.log(key.value);
         if (key.classList.value === 'delete') console.log(key.value);
         if (key.classList.value === 'percent') console.log(key.value);
