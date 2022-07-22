@@ -102,6 +102,14 @@ function operate(operator, firstOperand, secondOperand) {
 };
 // console.log(operate('/', 24, 12));
 
+function sign() {
+    calculator.displayValue = (calculator.displayValue * -1).toString();
+    calculator.secondOperand = calculator.displayValue;
+    if (calculator.displayValue === '0') {
+        calculator.displayValue = '0';
+    };
+};
+
 function percent() {
     if (calculator.operator === '+' || calculator.operator === '-') {
         calculator.displayValue = (calculator.firstOperand/100*calculator.displayValue).toString();
@@ -159,7 +167,7 @@ keys.forEach((key) => {
         if (key.classList.value === 'all-clear') clearAll(); // console.log(key.value);
         if (key.classList.value === 'delete') deleteValue(); // console.log(key.value);
         if (key.classList.value === 'percent') percent(); // console.log(key.value);
-        if (key.classList.value === 'sign') console.log(key.value);
+        if (key.classList.value === 'sign') sign(); // console.log(key.value);
         updateDisplay();
     });
 });
