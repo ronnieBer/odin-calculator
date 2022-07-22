@@ -102,6 +102,18 @@ function operate(operator, firstOperand, secondOperand) {
 };
 // console.log(operate('/', 24, 12));
 
+function percent() {
+    if (calculator.operator === '+' || calculator.operator === '-') {
+        calculator.displayValue = (calculator.firstOperand/100*calculator.displayValue).toString();
+        calculator.secondOperand = calculator.displayValue;
+    } else if (calculator.operator === '×' || calculator.operator === '÷') {
+        calculator.displayValue = (calculator.displayValue/100).toString();
+        calculator.secondOperand = calculator.displayValue;
+    } else {
+        calculator.displayValue = '0';
+    };
+};
+
 function deleteValue() {
     if (calculator.secondOperand === '') return;
 
@@ -146,7 +158,7 @@ keys.forEach((key) => {
         if (key.classList.value === 'eval-operator') evalOperator(); // console.log(key.value);
         if (key.classList.value === 'all-clear') clearAll(); // console.log(key.value);
         if (key.classList.value === 'delete') deleteValue(); // console.log(key.value);
-        if (key.classList.value === 'percent') console.log(key.value);
+        if (key.classList.value === 'percent') percent(); // console.log(key.value);
         if (key.classList.value === 'sign') console.log(key.value);
         updateDisplay();
     });
