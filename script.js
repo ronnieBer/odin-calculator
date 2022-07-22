@@ -102,6 +102,24 @@ function operate(operator, firstOperand, secondOperand) {
 };
 // console.log(operate('/', 24, 12));
 
+function deleteValue() {
+    if (calculator.secondOperand === '') return;
+
+    calculator.displayValue = calculator.displayValue.slice(0, -1);
+
+    if (calculator.operator !== null) {
+        calculator.secondOperand = calculator.secondOperand.toString().slice(0, -1);
+        calculator.waitingForSecondOperand = true;
+    } else if (calculator.displayValue === '') {
+        calculator.displayValue = '0';
+        calculator.secondOperand = '';
+    };
+
+    if (calculator.operator !== null && calculator.displayValue === '') {
+        calculator.displayValue = calculator.firstOperand.toString();
+    };
+};
+
 function clearAll() {
     calculator.displayValue = '0';
     calculator.firstOperand = '';
@@ -127,7 +145,7 @@ keys.forEach((key) => {
         if (key.classList.value === 'decimal') inputDecimal(key.value); // console.log(key.value);
         if (key.classList.value === 'eval-operator') evalOperator(); // console.log(key.value);
         if (key.classList.value === 'all-clear') clearAll(); // console.log(key.value);
-        if (key.classList.value === 'delete') console.log(key.value);
+        if (key.classList.value === 'delete') deleteValue(); // console.log(key.value);
         if (key.classList.value === 'percent') console.log(key.value);
         if (key.classList.value === 'sign') console.log(key.value);
         updateDisplay();
